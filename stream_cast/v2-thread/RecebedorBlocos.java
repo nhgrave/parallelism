@@ -7,7 +7,7 @@ import java.net.DatagramSocket;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-public class RecebedorBlocosVthread extends JFrame implements Runnable {
+public class RecebedorBlocos extends JFrame implements Runnable {
 
     private Thread t = new Thread(this);
     private BufferedImage bi = new BufferedImage(Util.RESOLUCAO_X, Util.RESOLUCAO_Y, BufferedImage.TYPE_INT_ARGB);
@@ -57,7 +57,7 @@ public class RecebedorBlocosVthread extends JFrame implements Runnable {
         }
     }
 
-    public RecebedorBlocosVthread() {
+    public RecebedorBlocos() {
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setVisible(true);
         setTitle("Schoweiro 1.0");
@@ -96,7 +96,7 @@ public class RecebedorBlocosVthread extends JFrame implements Runnable {
     }
 
     public static void main(String[] args) {
-        RecebedorBlocosVthread recebedor = new RecebedorBlocosVthread();
+        RecebedorBlocos recebedor = new RecebedorBlocos();
         recebedor.start();
     }
 }

@@ -10,18 +10,18 @@ import java.net.UnknownHostException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class EnviadorBlocosVThreadBlock {
+public class EnviadorBlocos {
 
     DatagramSocket senderSocket;
     InetAddress ipDestino;
     CapturaTela capturaTela;
 
-    public EnviadorBlocosVThreadBlock() {
+    public EnviadorBlocos() {
         try {
             this.senderSocket = new DatagramSocket();
             this.ipDestino = InetAddress.getByName("127.0.0.1");
         } catch (SocketException | UnknownHostException ex) {
-            Logger.getLogger(EnviadorBlocosVThreadBlock.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnviadorBlocos.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -49,7 +49,7 @@ public class EnviadorBlocosVThreadBlock {
 
                     Thread.sleep(15);
                 } catch (IOException | InterruptedException ex) {
-                    Logger.getLogger(EnviadorBlocosVThreadBlock.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EnviadorBlocos.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
@@ -57,9 +57,9 @@ public class EnviadorBlocosVThreadBlock {
         private void processImageBlock() {
             // Initialize the image array with image chunks
             BufferedImage blockImg = new BufferedImage(Util.BLOCK_X, Util.BLOCK_Y, BufferedImage.TYPE_INT_RGB);
+
             // Draws image
             Graphics2D imgCreator = blockImg.createGraphics();
-
             imgCreator.drawImage(capturaTela.image, 0, 0, Util.BLOCK_X, Util.BLOCK_Y, srcCornerX, srcCornerY, dstCornerX, dstCornerY, null);
 
             int aux = 0;
@@ -121,7 +121,7 @@ public class EnviadorBlocosVThreadBlock {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
-                Logger.getLogger(EnviadorBlocosVThreadBlock.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EnviadorBlocos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
@@ -129,6 +129,6 @@ public class EnviadorBlocosVThreadBlock {
     }
 
     public static void main(String[] args) {
-        new EnviadorBlocosVThreadBlock().start();
+        new EnviadorBlocos().start();
     }
 }
